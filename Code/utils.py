@@ -32,3 +32,4 @@ def gen_random_list(num):
     for i in range(num):
         nums.append(random.randint(0, num))
     return nums
+
