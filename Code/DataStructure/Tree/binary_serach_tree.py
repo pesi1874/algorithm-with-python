@@ -21,16 +21,16 @@ def inorder(root):
 
 
 # 插入新节点
-def insert(node, key):
+def insert_node(node, key):
     if node is None:
         k = NewNode(key)
         return k
     if key == node.key:
         node.count += 1
     if key < node.key:
-        node.left = insert(node.left, key)
+        node.left = insert_node(node.left, key)
     else:
-        node.right = insert(node.right, key)
+        node.right = insert_node(node.right, key)
 
     return node
 
@@ -85,16 +85,15 @@ def delete_node(root, key):
 
 if __name__ == '__main__':
     root = None
-    root = insert(root, 12)
-    root = insert(root, 10)
-    root = insert(root, 20)
-    root = insert(root, 9)
-    root = insert(root, 11)
-    root = insert(root, 10)
-    root = insert(root, 12)
-    root = insert(root, 12)
+    root = insert_node(root, 12)
+    root = insert_node(root, 10)
+    root = insert_node(root, 20)
+    root = insert_node(root, 9)
+    root = insert_node(root, 11)
+    root = insert_node(root, 10)
+    root = insert_node(root, 12)
+    root = insert_node(root, 12)
 
 
     print("Inorder traversal of the given tree")
     inorder(root)
-    print()
