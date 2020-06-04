@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+二叉搜索树的特性主要有：插入，删除，搜索
+依赖：递归或循环
+问题：使用递归较简洁，但是递归层次过多容易消耗内存堆栈溢出
+遍历方式：
+递归：前序遍历，中序遍历，后序遍历，
+层序遍历
+"""
 
 
-class NewNode:
+class Node:
 
     # 构造器，产生一个新节点
-    def __init__(self, data):
-        self.key = data
+    def __init__(self, key):
+        self.key = key
         self.count = 1
         self.left = None
         self.right = None
@@ -23,7 +31,7 @@ def inorder(root):
 # 插入新节点
 def insert_node(node, key):
     if node is None:
-        k = NewNode(key)
+        k = Node(key)
         return k
     if key == node.key:
         node.count += 1
@@ -36,13 +44,33 @@ def insert_node(node, key):
 
 
 # 给予一个非空二叉搜索树，返回该树上的最小节点，注意：不需要搜索整棵树
-def min_value_node(node):
+def min_node(node):
     current = node
 
     while current.left is not None:
         current = current.left
 
     return current
+
+
+def max_node(node: Node):
+    current = node
+    while current.right is not Node:
+        current = current.right
+
+    return current
+
+
+def search_node(node: Node, key: int):
+    if key == node.key:
+        return node.count
+    if key < node.key:
+        return search_node(node.left, key)
+    if key > node.key:
+        return search_node(node.right, key)
+    else:
+        print("key: {}, not in tree".format(key))
+        return None
 
 
 def delete_node(root, key):
@@ -74,26 +102,19 @@ def delete_node(root, key):
             return temp
 
         # 当左右子树均不为空，复制获取右子树的最小key作为继承的根节点
-        temp = min_value_node(root.right)
+        temp = min_node(root.right)
         root.key = temp.key
 
-        #删除右子树作为继承根节点的节点
+        # 删除右子树作为继承根节点的节点
         root.right = delete_node(root.right, temp.key)
 
     return root
 
 
 if __name__ == '__main__':
-    root = None
-    root = insert_node(root, 12)
-    root = insert_node(root, 10)
-    root = insert_node(root, 20)
-    root = insert_node(root, 9)
-    root = insert_node(root, 11)
-    root = insert_node(root, 10)
-    root = insert_node(root, 12)
-    root = insert_node(root, 12)
-
+    root = Node(3)
+    insert_node(root, 10)
+    insert_node(root, 1)
 
     print("Inorder traversal of the given tree")
     inorder(root)
