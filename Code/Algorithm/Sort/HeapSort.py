@@ -61,9 +61,14 @@ class MaxHeap:
             j = (index << 1) + 1
 
     def search(self, key):
-        for index, key in enumerate(self._data):
-            if i == key:
-                return self._data
+        """
+        根据key搜索索引值
+        :param key:
+        :return:
+        """
+        for i, k in enumerate(self._data):
+            if k == key:
+                return i
 
     def display(self):
         print(self._data)
@@ -73,7 +78,9 @@ if __name__ == '__main__':
     h = MaxHeap()
     for i in range(10):
         h.insert(i)
-    h.insert(9)
+    h.display()
+    print(h.search(1))
+    h.pop()
     h.display()
 
 
