@@ -9,7 +9,6 @@ from Code.utils import count_time, base_log
 # @count_time
 @base_log
 def quick_sort(cols):
-    # 集合长度为0的边界处理
     if len(cols) <= 1:
         return cols
 

@@ -10,6 +10,11 @@ def quick_sort():
     cols = gen_random_list(10000)
     quick_sort(cols)
 
+def bubble_sort():
+    from Algorithm.Sort.BubbleSort import bubble_sort
+    cols = [3, 2, 6, 5, 1]
+    bubble_sort(cols)
+
 
 if __name__ == '__main__':
     quick_sort()
